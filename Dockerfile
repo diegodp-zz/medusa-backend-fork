@@ -1,7 +1,10 @@
 FROM node:18-alpine AS deps
 
-RUN  yarn install 
+COPY ./package*.json ./
 
+RUN  yarn 
+COPY ./turbo*.json ./
+RUN yarn build
 RUN yarn develop
 
 
