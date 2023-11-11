@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+    image: backend:latest
+    container_name: medusa-server
+    restart: always
+    command: ["npm", "run", "start"]
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/medusa-docker
+
+
+    volumes:
+      - medusa-data:/data
