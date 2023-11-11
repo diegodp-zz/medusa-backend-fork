@@ -1,15 +1,10 @@
-FROM node:18-alpine AS deps
+FROM node:18-alpine
 
-COPY ./package*.json ./
+WORKDIR /app/medusa
 
-RUN  yarn 
-COPY ./turbo*.json ./
-RUN yarn build
-RUN yarn develop
+RUN npm install -g @medusajs/medusa-cli cross-env
+COPY package*.json ./
+RUN npm install
 
 
-EXPOSE 3000
-
-ENV PORT 3000
-
-CMD ["yarn", "start"]
+COPY . .
